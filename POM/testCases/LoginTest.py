@@ -46,7 +46,7 @@ class LoginTest(unittest.TestCase):
         # cls.chr_options.add_experimental_option("detach", True)
         # cls.driver = webdriver.Chrome(options=cls.chr_options)
         cls.driver = webdriver.Chrome()
-        # cls.driver.implicitly_wait(2)
+        cls.driver.implicitly_wait(2)
 
     '''
     Step 1: Go to URL.
@@ -105,7 +105,7 @@ class LoginTest(unittest.TestCase):
         act_error = lg.getErrorInvaldAccount()
         exp_error = "Epic sadface: Username and password do not match any user in this service"
         self.assertEqual(exp_error, act_error)
-    #
+
     # def test_login_with_performance_glitch_user(self, false=None):
     #     self.driver.get(self.baseURL)
     #     start = time.time()
