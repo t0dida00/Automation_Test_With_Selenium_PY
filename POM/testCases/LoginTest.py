@@ -1,10 +1,10 @@
-import time
+
 import unittest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import sys
 import os
-import openpyxl
+
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from POM.pageObjects.loginPage import LoginPage
@@ -20,7 +20,7 @@ Test login by many types of accounts:
 1: standard account
 2: invalid account
 3: block account
-4: perfomance glitch account
+4: perfomance glitch account (postpone)
 5: problem account
 """
 
