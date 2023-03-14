@@ -121,15 +121,6 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
         self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
 
-    def test_ElementsInHamburgerMenuVisible(self):
-        hp = HomePage(self.driver)
-
-        hp.clickItemSort()
-        time.sleep(1)
-        self.assertEqual(True, hp.isAllItemsVisible(),"All Items invisible")
-        self.assertEqual(True, hp.isAboutVisible(),"About invisible")
-        self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
-        self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
 
     @classmethod
     def tearDownClass(cls):
