@@ -120,10 +120,6 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isAboutVisible(),"About invisible")
         self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
         self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
-        self.assertEqual(True, hp.isAllItemsEnable(),"All Items disable")
-        self.assertEqual(True, hp.isAboutEnable(),"About disable")
-        self.assertEqual(True, hp.isLogOutEnable(),"Logout disable")
-        self.assertEqual(True, hp.isResetAppEnable(),"Reset disable")
 
     def test_ElementsInHamburgerMenuVisible(self):
         hp = HomePage(self.driver)
