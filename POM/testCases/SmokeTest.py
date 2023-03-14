@@ -67,29 +67,6 @@ class LoginPageTest(unittest.TestCase):
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isLoginButtonEnable())
 
-    '''
-       Step 1: Go to URL.
-       Step 2: Enter username: standard_user.
-       Step 3: Enter password: secret_password.
-       Step 4: Click on button Login.
-       Step 5: verify url.
-       Step 6: Click on Menu at the left side.
-       Step 7: Click on button Logout
-       '''
-
-    # def test_login_logout_with_standard_user(self):
-    #     self.driver.get(self.baseURL)
-    #     lg = LoginPage(self.driver)
-    #     lg.setUsername(self.standard_user)
-    #     lg.setPassword(self.password)
-    #     lg.clickLogin()
-    #     act_url = self.driver.current_url
-    #     exp_url = "https://www.saucedemo.com/inventory.html"
-    #     self.assertEqual(exp_url, act_url)
-    #     hp = HomePage(self.driver)
-    #     hp.clickHamburger()
-    #     hp.clickLogout()
-
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
@@ -98,6 +75,7 @@ class LoginPageTest(unittest.TestCase):
 class HomePageTest(unittest.TestCase):
     baseURL = "https://www.saucedemo.com/"
     standard_user = "standard_user"
+    problem_user="problem_user"
     password = "secret_sauce"
     homeURL = "https://www.saucedemo.com/inventory.html"
 
@@ -114,29 +92,25 @@ class HomePageTest(unittest.TestCase):
         exp_url = "https://www.saucedemo.com/inventory.html"
         cls().assertEqual(exp_url, act_url)
 
-    def test_isLogoVisible(self):
+    def test_ElementsOfLandingPageVisible(self):
         hp = HomePage(self.driver)
-        self.assertEqual(True,hp.isTitleVisible())
-    def test_isLogoVisible(self):
-        hp = HomePage(self.driver)
-        self.assertEqual(True,hp.isTitleVisible())
-
-    def test_isShoppingCartVisible(self):
-        hp = HomePage(self.driver)
-        self.assertEqual(True,hp.isShoppingCartVisible())
-
-    def test_isHamburgerMenuEnable(self):
-        hp = HomePage(self.driver)
-        self.assertEqual(True,hp.isHamburgerMenuEnable())
-
-    def test_isHamburgerMenuVisible(self):
-        hp = HomePage(self.driver)
+        self.assertEqual(True, hp.isTitleVisible())
+        self.assertEqual(True, hp.isTitleVisible())
+        self.assertEqual(True, hp.isShoppingCartVisible())
+        self.assertEqual(True, hp.isHamburgerMenuEnable())
         self.assertEqual(True, hp.isHamburgerMenuVisible())
-
-    def test_isItemSortVisible(self):
-        hp = HomePage(self.driver)
         self.assertEqual(True, hp.isItemSortVisible())
-
+        items = len(hp.isItemsVisible())
+        self.assertEqual(True, items >0 , "Items Invisible")
+        for item in range (1,items+1):
+            self.assertEqual(True, hp.isImageItemVisible(item), "Item images invisible")
+            self.assertEqual(True, hp.isDescriptionVisible(item), "Item descriptions invisible")
+            self.assertEqual(True, hp.isItemPriceVisible(item), "Item price invisible")
+            self.assertEqual(True, hp.isItemLabelVisible(item), "Item label invisible")
+            self.assertEqual(True, hp.isAddtoCartButtonVisible(item), "Add button invisible")
+        self.assertEqual(True, hp.isTwitterVisible())
+        self.assertEqual(True, hp.isFacebookVisible())
+        self.assertEqual(True, hp.isLinkedinVisible())
     def test_ElementsInHamburgerMenuVisible(self):
         hp = HomePage(self.driver)
 
@@ -151,22 +125,20 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isLogOutEnable(),"Logout disable")
         self.assertEqual(True, hp.isResetAppEnable(),"Reset disable")
 
+    def test_ElementsInHamburgerMenuVisible(self):
+        hp = HomePage(self.driver)
+
+        hp.clickItemSort()
+        time.sleep(1)
+        self.assertEqual(True, hp.isAllItemsVisible(),"All Items invisible")
+        self.assertEqual(True, hp.isAboutVisible(),"About invisible")
+        self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
+        self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
+
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
 
 
-# def suite():
-#     test_suite = unittest.TestSuite()
-#     test_suite.addTest((HomePageTest("test_all_elements_in_home_page")))
-#
-#     return test_suite
-#
-#
-# mySuite = suite()
-#
-# runner = unittest.TextTestRunner()
-#
-# runner.run(mySuite)
 if __name__ == '__main__':
     unittest.main()
