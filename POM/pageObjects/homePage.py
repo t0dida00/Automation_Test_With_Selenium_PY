@@ -23,6 +23,7 @@ class HomePage():
     button_linkedin_class = "social_linkedin"
     dropdown_sort_xpath ="//select[@class='product_sort_container']/option"
     links_social_xpath= "//ul[@class='social']/li/a"
+    div_item_name_xpath='(//div[@class="inventory_item_name"])'
     def __init__(self,driver):
         self.driver=driver
 
@@ -111,3 +112,9 @@ class HomePage():
 
     def getImageSRC(self,index):
         return self.driver.find_element(By.XPATH, self.div_items_xpath + '[' + str(index) + ']' + self.div_item_image_xpath+ "//img").get_attribute("src")
+
+    def getItemName(self,index):
+        return self.driver.find_element(By.XPATH, self.div_item_name_xpath + '[' + str(index) + ']').get_attribute("textContent")
+
+    def getItemPrice(self,index):
+        return self.driver.find_element(By.XPATH, "("+self.div_item_price_xpath + ')[' + str(index) + ']').get_attribute("textContent")
