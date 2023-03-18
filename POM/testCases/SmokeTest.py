@@ -121,6 +121,13 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
         self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
 
+    def test_ElementsInSortVisible(self):
+        hp = HomePage(self.driver)
+        hp.clickItemSort()
+        time.sleep(1)
+        methods= len(hp.countMethodsSort())
+        for method in range(1,methods+1):
+            self.assertEqual(True, hp.isMethodSortVisible(method), "Sort methods invisible")
 
     @classmethod
     def tearDownClass(cls):

@@ -3,7 +3,6 @@ from selenium.webdriver.common.by import By
 
 class HomePage():
     button_burger_id = "react-burger-menu-btn"
-
     text_title_class="app_logo"
     image_shopping_cart_id = "shopping_cart_container"
     selection_product_sort_class = "product_sort_container"
@@ -18,10 +17,12 @@ class HomePage():
     div_item_label_xpath = '//div[@class="inventory_item_label"]'
     div_item_price_xpath = '//div[@class="inventory_item_price"]'
     button_add_to_cart_xpath="//button"
+    button_add_to_cart_class="btn_inventory"
     button_twitter_class= "social_twitter"
     button_facebook_class = "social_facebook"
     button_linkedin_class = "social_linkedin"
     dropdown_sort_xpath ="//select[@class='product_sort_container']/option"
+    links_social_xpath= "//ul[@class='social']/li/a"
     def __init__(self,driver):
         self.driver=driver
 
@@ -64,9 +65,10 @@ class HomePage():
     def clickItemSort(self):
          self.driver.find_element(By.CLASS_NAME, self.selection_product_sort_class).click()
 
-    def isMethodsSortVisible(self):
+    def countMethodsSort(self):
         return self.driver.find_elements(By.XPATH, self.dropdown_sort_xpath)
-
+    def isMethodSortVisible(self,index):
+        return self.driver.find_element(By.XPATH,self.dropdown_sort_xpath +'['+str(index)+']').is_displayed()
     def isItemsVisible(self):
         return self.driver.find_elements(By.CLASS_NAME,self.div_items_class)
 
@@ -97,3 +99,15 @@ class HomePage():
 
     def isLinkedinVisible(self):
         return self.driver.find_element(By.CLASS_NAME, self.button_linkedin_class).is_displayed()
+
+    def getSocialLinks(self):
+        return self.driver.find_elements(By.XPATH,self.links_social_xpath)
+
+    def getAddtoCartButtons(self):
+        return self.driver.find_elements(By.CLASS_NAME,self.button_add_to_cart_class)
+
+    def clickImage(self,index):
+         self.driver.find_element(By.XPATH, self.div_items_xpath + '[' + str(index) + ']' + self.div_item_image_xpath).click()
+
+    def getImageSRC(self,index):
+        return self.driver.find_element(By.XPATH, self.div_items_xpath + '[' + str(index) + ']' + self.div_item_image_xpath+ "//img").get_attribute("src")
