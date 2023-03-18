@@ -5,6 +5,7 @@ import sys
 import os
 
 from selenium.webdriver import Keys
+from selenium.webdriver.common.by import By
 
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -36,9 +37,12 @@ class DetailPageTest(unittest.TestCase):
                          "https://www.saucedemo.com/static/media/bolt-shirt-1200x1500.c2599ac5.jpg",
                          "https://www.saucedemo.com/static/media/sauce-pullover-1200x1500.51d7ffaf.jpg",
                          "https://www.saucedemo.com/static/media/red-onesie-1200x1500.2ec615b2.jpg",
-                         "https://www.saucedemo.com/static/media/red-tatt-1200x1500.30dadef4.jpg1"]
+                         "https://www.saucedemo.com/static/media/red-tatt-1200x1500.30dadef4.jpg"]
         cls.LinkError=[]
 
+    @classmethod
+    def setUp(self):
+        self.LinkError = []
     def test_isMatchingImage_Homepage(self):
         dp=DetailPage(self.driver)
         hp=HomePage(self.driver)
@@ -50,16 +54,20 @@ class DetailPageTest(unittest.TestCase):
                 self.LinkError.append(hp.getImageSRC(item))
         self.assertEqual([],self.LinkError)
 
-    # def test_isMatchingImage_Detailpage(self):
-    #     dp = DetailPage(self.driver)
-    #     hp = HomePage(self.driver)
-    #
-    #     items = len(hp.isItemsVisible())
-    #
-    #     for item in range(1, items + 1):
-    #         if hp.getImageSRC(item) not in self.LinkData:
-    #             self.LinkError.append(hp.getImageSRC(item))
-    #     self.assertEqual([], self.LinkError)
+    def test_isMatchingImage_Detailpage(self):
+        dp = DetailPage(self.driver)
+        hp = HomePage(self.driver)
+
+        items = len(hp.isItemsVisible())
+
+        for item in range(1, items + 1):
+            image_homepage= hp.getImageSRC(item)
+            hp.clickImage(item)
+            image_detailpage = dp.getImageLink()
+            if image_detailpage != image_homepage:
+                self.LinkError.append(image_detailpage)
+            self.driver.find_element(By.ID,"back-to-products").click()
+        self.assertEqual([], self.LinkError)
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
