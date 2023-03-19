@@ -70,7 +70,7 @@ class LoginTest(unittest.TestCase):
         hp = HomePage(self.driver)
         hp.clickHamburger()
         hp.clickLogout()
-
+        print("Login test with standard_user - DONE")
     '''
     Step 1: Go to URL.
     Step 2: Enter username: locked_out_account.
@@ -88,7 +88,7 @@ class LoginTest(unittest.TestCase):
         act_error = lg.getErrorInvaldAccount()
         exp_error = "Epic sadface: Sorry, this user has been locked out."
         self.assertEqual(exp_error, act_error)
-
+        print("Login test with locked_out_user - DONE")
     '''
        Step 1: Go to URL.
        Step 2: Enter username: invalid_username_user.
@@ -105,7 +105,7 @@ class LoginTest(unittest.TestCase):
         act_error = lg.getErrorInvaldAccount()
         exp_error = "Epic sadface: Username and password do not match any user in this service"
         self.assertEqual(exp_error, act_error)
-
+        print("Login test with invalid_username_user - DONE")
     # def test_login_with_performance_glitch_user(self, false=None):
     #     self.driver.get(self.baseURL)
     #     start = time.time()

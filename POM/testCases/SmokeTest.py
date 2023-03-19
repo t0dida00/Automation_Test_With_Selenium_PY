@@ -7,13 +7,13 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from POM.pageObjects.loginPage import LoginPage
 from POM.pageObjects.homePage import HomePage
-import HtmlTestRunner
+#import HtmlTestRunner
 
 sys.tracebacklimit = 0
 
 __unittest = True
 
-
+# verify Titles, username-password Input, login Button
 class LoginPageTest(unittest.TestCase):
     baseURL = "https://www.saucedemo.com/"
     standard_user = "standard_user"
@@ -36,42 +36,45 @@ class LoginPageTest(unittest.TestCase):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isTitleVisible())
-
+        print("Title is visible - DONE")
     def test_isUsernameInputVisible(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isUsernameInputVisible())
-
+        print("Username input is visible - DONE")
     def test_isUsernameInputEnable(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isUsernameInputEnable())
-
+        print("Username input is enable - DONE")
     def test_isPasswordInputVisible(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isPasswordInputVisible())
-
+        print("Password input is visible - DONE")
     def test_isPasswordInputEnable(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isPasswordInputEnable())
-
+        print("Password input is enable - DONE")
     def test_isLoginButtonVisible(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isLoginButtonVisible())
-
+        print("Button login is visible - DONE")
     def test_isLoginButtonEnable(self):
         self.driver.get(self.baseURL)
         lg = LoginPage(self.driver)
         self.assertEqual(True, lg.isLoginButtonEnable())
+        print("Button login is enable - DONE")
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
 
-
+# verify Elements of Landing page: Price, name ,description, button of item
+# verify hamburger menu - cart icon, social icons
+# verify sort icon and submenu in its
 class HomePageTest(unittest.TestCase):
     baseURL = "https://www.saucedemo.com/"
     standard_user = "standard_user"
@@ -111,6 +114,7 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isTwitterVisible())
         self.assertEqual(True, hp.isFacebookVisible())
         self.assertEqual(True, hp.isLinkedinVisible())
+        print("Elements of Landing Page is visible - DONE")
     def test_ElementsInHamburgerMenuVisible(self):
         hp = HomePage(self.driver)
 
@@ -120,7 +124,7 @@ class HomePageTest(unittest.TestCase):
         self.assertEqual(True, hp.isAboutVisible(),"About invisible")
         self.assertEqual(True, hp.isLogOutVisible(),"Logout invisible")
         self.assertEqual(True, hp.isResetAppVisible(),"sResetApp invisible")
-
+        print("Elements of Hamburger Menu is visible - DONE")
     def test_ElementsInSortVisible(self):
         hp = HomePage(self.driver)
         hp.clickItemSort()
@@ -128,7 +132,7 @@ class HomePageTest(unittest.TestCase):
         methods= len(hp.countMethodsSort())
         for method in range(1,methods+1):
             self.assertEqual(True, hp.isMethodSortVisible(method), "Sort methods invisible")
-
+        print("Elements of Sort is visible - DONE")
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()

@@ -55,7 +55,7 @@ class DetailPageTest(unittest.TestCase):
             if hp.getImageSRC(item) not in self.LinkData:
                 self.LinkError.append(hp.getImageSRC(item))
         self.assertEqual([], self.LinkError)
-
+        print("Test Images in Home page- DONE")
     def test_isMatchingImage_Detailpage(self):
         dp = DetailPage(self.driver)
         hp = HomePage(self.driver)
@@ -71,7 +71,7 @@ class DetailPageTest(unittest.TestCase):
                     "Image at Home page: " + image_homepage + "\n Image at detail page: " + image_detailpage)
             self.driver.find_element(By.ID, "back-to-products").click()
         self.assertEqual([], self.LinkError)
-
+        print("Test Images in Detail page- DONE")
     def test_isMatchingItemName_Detailpage(self):
         dp = DetailPage(self.driver)
         hp = HomePage(self.driver)
@@ -87,7 +87,7 @@ class DetailPageTest(unittest.TestCase):
                     "Item name at Home page: " + item_name_homepage + " Item name at detail page: " + item_name_detailpage)
             self.driver.find_element(By.ID, "back-to-products").click()
         self.assertEqual([], self.LinkError)
-
+        print("Test item name in Detail page- DONE")
     def test_isMatchingItemPrice_Detailpage(self):
         dp = DetailPage(self.driver)
         hp = HomePage(self.driver)
@@ -101,7 +101,7 @@ class DetailPageTest(unittest.TestCase):
                     "Item price at Home page: " + item_price_homepage + " Item price at detail page: " + item_price_detailpage)
             self.driver.find_element(By.ID, "back-to-products").click()
         self.assertEqual([], self.LinkError)
-
+        print("Test item prices in Detail page- DONE")
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()

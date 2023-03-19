@@ -37,7 +37,8 @@ class LinksTest(unittest.TestCase):
         links = hp.getSocialLinks()
         for link in links:
             self.assertIn(link.get_attribute("href"),expect_links,"\nLink Error:" + link.get_attribute("href"))
-
+            print("Test social link: "+expect_links[links.index(link)] + " - DONE")
+        print("Test social links - DONE")
     def test_AddtoCart_Activate(self):
         hp = HomePage(self.driver)
         addButtons = hp.getAddtoCartButtons()
@@ -47,15 +48,16 @@ class LinksTest(unittest.TestCase):
         for button in addButtons:
             button.click()
             afterClick =hp.getAddtoCartButtons()
-            #try:self.assertEqual("Remove", afterClick[addButtons.index(button)].get_attribute("textContent"),addButtons.index(button))
 
             try:
                 self.assertEqual("Remove", afterClick[addButtons.index(button)].get_attribute("textContent"),
                                  addButtons.index(button))
             except AssertionError as e:self.AddButtonsErrors.append(button.get_attribute("name"))
             #button.click
-        # check if remove buttons working or not
+
         self.assertEqual([], self.AddButtonsErrors)
+        print("Test press Add to cart button  - DONE")
+        # check if remove buttons working or not
         addButtons = hp.getAddtoCartButtons()
         for button in addButtons:
             button.click()
@@ -67,7 +69,7 @@ class LinksTest(unittest.TestCase):
                 self.RemoveButtonsErrors.append(button.get_attribute("name"))
 
         self.assertEqual([],self.RemoveButtonsErrors)
-
+        print("Test press Remove button  - DONE")
     @classmethod
     def tearDownClass(cls):
 
