@@ -44,7 +44,7 @@ class DetailPageTest(unittest.TestCase):
     @classmethod
     def setUp(self):
         self.LinkError = []
-
+        self.maxDiff = None
     def test_isMatchingImage_Homepage(self):
         dp = DetailPage(self.driver)
         hp = HomePage(self.driver)

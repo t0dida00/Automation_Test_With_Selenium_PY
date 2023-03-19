@@ -26,7 +26,7 @@ class LinksTest(unittest.TestCase):
         cls.driver = webdriver.Chrome()
         cls.driver.get(cls.baseURL)
         lg = LoginPage(cls.driver)
-        lg.setUsername(cls.problem_user)
+        lg.setUsername(cls.standard_user)
         lg.setPassword(cls.password)
         lg.clickLogin()
         cls.AddButtonsErrors = []
