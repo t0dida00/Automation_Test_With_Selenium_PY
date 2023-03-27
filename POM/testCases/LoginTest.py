@@ -9,7 +9,7 @@ import os
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 from POM.pageObjects.loginPage import LoginPage
 from POM.pageObjects.homePage import HomePage
-import HtmlTestRunner
+#import HtmlTestRunner
 
 sys.tracebacklimit = 0
 
